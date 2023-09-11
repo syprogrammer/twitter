@@ -5,7 +5,7 @@ import { FaUser } from 'react-icons/fa';
 
 import SidebarLogo from './SidebarLogo';
 import SidebarTweetButton from './SidebarTweetButton';
-import SidebarItem from './Sidebaritem';
+import SidebarItem from './SidebarItem';
 
 const Sidebar = () => {
 

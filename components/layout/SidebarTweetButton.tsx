@@ -10,7 +10,7 @@ const SidebarTweetButton = () => {
   const loginModal = useLoginModal();
 
   const onClick = useCallback(() => {
-    
+    loginModal.onOpen()
     router.push('/');
   }, [loginModal, router]);
 

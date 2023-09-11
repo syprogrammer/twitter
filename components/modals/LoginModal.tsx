@@ -19,10 +19,6 @@ const LoginModal = () => {
   const onSubmit = useCallback(async () => {
     try {
       setIsLoading(true);
-
-
-      
-
       loginModal.onClose();
     } catch (error) {
     
