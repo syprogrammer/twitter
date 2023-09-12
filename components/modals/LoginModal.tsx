@@ -1,12 +1,13 @@
 
 import { useCallback, useState } from "react";
 
-
+import { signIn } from 'next-auth/react';
 import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
 
 import Input from "../Input";
 import Modal from "../Modal";
+import toast from "react-hot-toast";
 
 const LoginModal = () => {
   const loginModal = useLoginModal();
@@ -19,9 +20,14 @@ const LoginModal = () => {
   const onSubmit = useCallback(async () => {
     try {
       setIsLoading(true);
+      signIn('credentials', {
+        email,
+        password,
+      });
+      toast.success('logged in');
       loginModal.onClose();
     } catch (error) {
-    
+      toast.error("something went wrong")
     } finally {
       setIsLoading(false);
     }
@@ -34,18 +40,18 @@ const LoginModal = () => {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Input 
+      <Input
         placeholder="Email"
         onChange={(e) => setEmail(e.target.value)}
         value={email}
-        disabled={isLoading}  
+        disabled={isLoading}
       />
-      <Input 
+      <Input
         placeholder="Password"
         type="password"
         onChange={(e) => setPassword(e.target.value)}
         value={password}
-        disabled={isLoading} 
+        disabled={isLoading}
       />
     </div>
   )
@@ -53,14 +59,14 @@ const LoginModal = () => {
   const footerContent = (
     <div className="text-neutral-400 text-center mt-4">
       <p>First time using Twitter?
-        <span 
-          onClick={onToggle} 
+        <span
+          onClick={onToggle}
           className="
             text-white 
             cursor-pointer 
             hover:underline
           "
-          > Create an account</span>
+        > Create an account</span>
       </p>
     </div>
   )
