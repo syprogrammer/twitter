@@ -4,7 +4,7 @@ import { format } from "date-fns";
 
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useUser from "@/hooks/useUser";
-// import useFollow from "@/hooks/useFollow";
+import useFollow from "@/hooks/useFollow";
 import useEditModal from "@/hooks/useEditModal";
 
 import Button from "../Button";
@@ -19,7 +19,7 @@ const UserBio: React.FC<UserBioProps> = ({ userId }) => {
 
   const editModal = useEditModal();
 
-//   const { isFollowing, toggleFollow } = useFollow(userId);
+  const { isFollowing, toggleFollow } = useFollow(userId);
 
   const createdAt = useMemo(() => {
     if (!fetchedUser?.createdAt) {
@@ -34,20 +34,16 @@ const UserBio: React.FC<UserBioProps> = ({ userId }) => {
     <div className="border-b-[1px] border-neutral-800 pb-4">
       <div className="flex justify-end p-2">
         {currentUser?.id === userId ? (
-          <Button secondary label="Edit" onClick={editModal.onOpen} />
-        //   <Button secondary label="Edit" onClick={()=>{}} />
+        //   <Button secondary label="Edit" onClick={editModal.onOpen} />
+         <Button secondary label="Edit" onClick={()=>{}} />
         ) : (
-        //   <Button
-        //     onClick={toggleFollow} 
-        //     label={isFollowing ? 'Unfollow' : 'Follow'}
-        //     secondary={!isFollowing}
-        //     outline={isFollowing}
-        //   />
           <Button
-            label={"follow"}
-            onClick={()=>{}}
-            secondary
+            onClick={toggleFollow} 
+            label={isFollowing ? 'Unfollow' : 'Follow'}
+            secondary={!isFollowing}
+            outline={isFollowing}
           />
+          
         )}
       </div>
       <div className="mt-8 px-4">

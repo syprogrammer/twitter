@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import Header from '@/components/Header'
 import useLoginModal from "@/hooks/useLoginModal";
 import Form from '@/components/Form';
+import PostFeed from '@/components/posts/PostFeed';
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
     <>
       <Header label="Home" />
       <Form placeholder="What's happening" />
+      <PostFeed />
     </>
   )
 }
